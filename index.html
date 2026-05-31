@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌟 Kid Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🌟 Kid Hub</div>
+    <p class="tagline">Learn · Play · Create · Explore</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('games')" class="nav-btn">🎮 Games</button>
+    <button onclick="showSection('learn')" class="nav-btn">📚 Learn</button>
+    <button onclick="showSection('create')" class="nav-btn">🎨 Create</button>
+    <button onclick="showSection('stories')" class="nav-btn">📖 Stories</button>
+    <button onclick="showSection('math')" class="nav-btn">🔢 Math</button>
+  </nav>
+
+  <!-- GAMES -->
+  <section id="games" class="hub-section active">
+    <h2>🎮 Mini Games</h2>
+    <div class="card-grid">
+      <div class="card" onclick="startMemoryGame()">
+        <div class="card-icon">🃏</div>
+        <h3>Memory Match</h3>
+        <p>Flip cards and find the pairs!</p>
+      </div>
+      <div class="card" onclick="startNumberGuess()">
+        <div class="card-icon">🔢</div>
+        <h3>Number Guess</h3>
+        <p>Guess the secret number 1–100!</p>
+      </div>
+      <div class="card" onclick="startEmojiQuiz()">
+        <div class="card-icon">🤔</div>
+        <h3>Emoji Quiz</h3>
+        <p>What does the emoji combo mean?</p>
+      </div>
+      <div class="card" onclick="startTypingChallenge()">
+        <div class="card-icon">⌨️</div>
+        <h3>Typing Speed</h3>
+        <p>How fast can you type?</p>
+      </div>
+    </div>
+    <div id="game-area" class="game-area"></div>
+  </section>
+
+  <!-- LEARN -->
+  <section id="learn" class="hub-section">
+    <h2>📚 Fun Facts</h2>
+    <div id="fact-card" class="fact-card">
+      <div class="fact-emoji">🌍</div>
+      <p id="fact-text">Click below to discover an amazing fact!</p>
+    </div>
+    <button class="big-btn" onclick="newFact()">✨ New Fact!</button>
+    <div class="topics">
+      <h3>Choose a Topic:</h3>
+      <button class="topic-btn" onclick="setTopic('animals')">🐾 Animals</button>
+      <button class="topic-btn" onclick="setTopic('space')">🚀 Space</button>
+      <button class="topic-btn" onclick="setTopic('ocean')">🌊 Ocean</button>
+      <button class="topic-btn" onclick="setTopic('science')">🔬 Science</button>
+      <button class="topic-btn" onclick="setTopic('history')">🏛️ History</button>
+    </div>
+  </section>
+
+  <!-- CREATE -->
+  <section id="create" class="hub-section">
+    <h2>🎨 Drawing Canvas</h2>
+    <div class="canvas-tools">
+      <label>Color: <input type="color" id="colorPicker" value="#ff6b6b" /></label>
+      <label>Size: <input type="range" id="brushSize" min="2" max="40" value="8" /></label>
+      <button class="tool-btn" onclick="setTool('draw')">✏️ Draw</button>
+      <button class="tool-btn" onclick="setTool('erase')">🧹 Erase</button>
+      <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
+      <button class="tool-btn" onclick="downloadCanvas()">💾 Save</button>
+    </div>
+    <canvas id="drawingCanvas" width="800" height="450"></canvas>
+  </section>
+
+  <!-- STORIES -->
+  <section id="stories" class="hub-section">
+    <h2>📖 Story Builder</h2>
+    <div class="story-builder">
+      <div class="story-inputs">
+        <input type="text" id="heroName" placeholder="Hero's name (e.g. Luna)" />
+        <select id="heroType">
+          <option value="🦸 superhero">🦸 Superhero</option>
+          <option value="🧙 wizard">🧙 Wizard</option>
+          <option value="🐉 dragon rider">🐉 Dragon Rider</option>
+          <option value="🤖 robot">🤖 Robot</option>
+          <option value="🧜 mermaid">🧜 Mermaid</option>
+        </select>
+        <select id="setting">
+          <option value="🏰 enchanted castle">🏰 Enchanted Castle</option>
+          <option value="🚀 outer space">🚀 Outer Space</option>
+          <option value="🌊 deep ocean">🌊 Deep Ocean</option>
+          <option value="🌋 volcano island">🌋 Volcano Island</option>
+          <option value="🌈 rainbow world">🌈 Rainbow World</option>
+        </select>
+        <select id="quest">
+          <option value="save a hidden treasure">💎 Save Hidden Treasure</option>
+          <option value="rescue a magical creature">🦄 Rescue Magical Creature</option>
+          <option value="stop an evil villain">👾 Stop Evil Villain</option>
+          <option value="solve an ancient mystery">🗺️ Solve Ancient Mystery</option>
+        </select>
+      </div>
+      <button class="big-btn" onclick="generateStory()">📝 Generate My Story!</button>
+      <div id="story-output" class="story-output"></div>
+    </div>
+  </section>
+
+  <!-- MATH -->
+  <section id="math" class="hub-section">
+    <h2>🔢 Math Challenge</h2>
+    <div class="math-settings">
+      <button class="level-btn active" onclick="setLevel('easy')">🟢 Easy</button>
+      <button class="level-btn" onclick="setLevel('medium')">🟡 Medium</button>
+      <button class="level-btn" onclick="setLevel('hard')">🔴 Hard</button>
+    </div>
+    <div class="math-card">
+      <div id="math-problem" class="math-problem">Press Start!</div>
+      <input type="number" id="math-answer" placeholder="Your answer" />
+      <button class="big-btn" onclick="checkMath()">✅ Check!</button>
+      <div id="math-feedback" class="math-feedback"></div>
+      <div class="math-score">Score: <span id="math-score">0</span> | Streak: <span id="math-streak">0</span>🔥</div>
+    </div>
+    <button class="big-btn" onclick="newMathProblem()">▶️ New Problem</button>
+  </section>
+
+  <footer>
+    <p>🌟 Kid Hub — Built with ❤️ for curious minds!</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
